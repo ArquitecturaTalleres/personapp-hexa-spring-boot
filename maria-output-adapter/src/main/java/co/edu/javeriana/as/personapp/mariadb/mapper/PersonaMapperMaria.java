@@ -88,4 +88,18 @@ public class PersonaMapperMaria {
 				.map(telefono -> telefonoMapperMaria.fromAdapterToDomain(telefono)).collect(Collectors.toList())
 				: new ArrayList<Phone>();
 	}
+
+	public PersonaEntity toEntity(Person domain) {
+        if (domain == null) return null;
+
+        PersonaEntity entity = new PersonaEntity();
+        entity.setCc(domain.getIdentification());
+        entity.setNombre(domain.getFirstName());
+        entity.setApellido(domain.getLastName());
+
+        entity.setGenero(domain.getGender().toString().charAt(0)); // M, F, O
+        entity.setEdad(domain.getAge());
+
+        return entity;
+    }
 }

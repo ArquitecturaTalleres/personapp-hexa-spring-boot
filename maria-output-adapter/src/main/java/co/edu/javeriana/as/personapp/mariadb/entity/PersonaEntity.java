@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import co.edu.javeriana.as.personapp.domain.Person;
+
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -142,5 +145,17 @@ public class PersonaEntity implements Serializable {
 		return "PersonaEntity [cc=" + cc + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero + ", edad="
 				+ edad + "]";
 	}
+
+	public PersonaEntity toEntity(Person domain) {
+        if (domain == null) return null;
+
+        PersonaEntity entity = new PersonaEntity();
+        entity.setCc(domain.getIdentification());
+        entity.setNombre(domain.getFirstName());
+        entity.setApellido(domain.getLastName());
+        entity.setGenero(domain.getGender().toString().charAt(0)); 
+        entity.setEdad(domain.getAge());
+        return entity;
+    }
 
 }

@@ -55,4 +55,16 @@ public class ProfesionMapperMaria {
 				.map(estudio -> estudiosMapperMaria.fromAdapterToDomain(estudio)).collect(Collectors.toList())
 				: new ArrayList<Study>();
 	}
+
+	public ProfesionEntity fromDomainToEntity(Profession profession) {
+        ProfesionEntity entity = new ProfesionEntity();
+        entity.setId(profession.getIdentification());
+        entity.setNom(profession.getName());
+        entity.setDes(profession.getDescription());
+        return entity;
+    }
+
+    public Profession fromEntityToDomain(ProfesionEntity entity) {
+        return new Profession(entity.getId(), entity.getNom(), entity.getDes(), null);
+    }
 }

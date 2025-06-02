@@ -57,4 +57,15 @@ public class EstudiosMapperMaria {
 	private String validateUniversityName(String univer) {
 		return univer != null ? univer : "";
 	}
+
+	public EstudiosEntity toEntity(Study domain) {
+        if (domain == null) return null;
+
+        EstudiosEntity entity = new EstudiosEntity();
+        entity.setPersona(personaMapperMaria.toEntity(domain.getPerson()));
+        entity.setProfesion(profesionMapperMaria.fromDomainToEntity(domain.getProfession()));
+        entity.setFecha(validateFecha(domain.getGraduationDate()));
+        entity.setUniver(domain.getUniversityName());
+        return entity;
+    }
 }
