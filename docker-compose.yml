@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:11
+    container_name: mariadb-persona
+    ports:
+      - "3307:3306"
+    environment:
+      MARIADB_DATABASE: persona_db
+      MARIADB_USER: persona_db
+      MARIADB_PASSWORD: persona_db
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./init/mariadb:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    container_name: mongo-persona
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: persona_db
+      MONGO_INITDB_ROOT_PASSWORD: persona_db
+      MONGO_INITDB_DATABASE: persona_db
+    volumes:
+      - mongodb_data:/data/db
+      - ./init/mongo:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+
+volumes:
+  mariadb_data:
+  mongodb_data:
