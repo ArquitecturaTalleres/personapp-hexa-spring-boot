@@ -13,7 +13,7 @@ services:
       MARIADB_ROOT_PASSWORD: root
     volumes:
       - mariadb_data:/var/lib/mysql
-      - ./init/mariadb:/docker-entrypoint-initdb.d
+      - ./scripts/persona_ddl_maria.sql:/docker-entrypoint-initdb.d/persona_ddl_maria.sql
     restart: unless-stopped
 
   mongodb:
@@ -27,7 +27,7 @@ services:
       MONGO_INITDB_DATABASE: persona_db
     volumes:
       - mongodb_data:/data/db
-      - ./init/mongo:/docker-entrypoint-initdb.d
+      - ./scripts/persona_ddl_mongo.js:/docker-entrypoint-initdb.d/persona_ddl_mongo.js
     restart: unless-stopped
 
 volumes:
