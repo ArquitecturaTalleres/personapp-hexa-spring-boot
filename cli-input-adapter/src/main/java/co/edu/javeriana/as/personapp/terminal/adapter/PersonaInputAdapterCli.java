@@ -14,6 +14,7 @@ import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
 import co.edu.javeriana.as.personapp.common.setup.DatabaseOption;
 import co.edu.javeriana.as.personapp.terminal.mapper.PersonaMapperCli;
 import co.edu.javeriana.as.personapp.terminal.model.PersonaModelCli;
+import co.edu.javeriana.as.personapp.terminal.model.PersonaRequestCli;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -56,4 +57,7 @@ public class PersonaInputAdapterCli {
 	        .forEach(System.out::println);
 	}
 
+	public void crearPersona(PersonaRequestCli request) {
+        System.out.println("Creando persona con nombre: " + request.getNombre());
+    }
 }
